@@ -18,7 +18,7 @@ except:
 class FilterRedis(object):
 
     key = "tweets"
-    r = redis.Redis(host='10.1.0.66')
+    r = redis.Redis(host='bulkan-evcimen.com')
     r.connect()
     num_tweets = 20
     trim_threshold = 100
@@ -28,7 +28,7 @@ class FilterRedis(object):
 
 
     def push(self, data):
-        self.r.push(self.key, data)
+        self.r.push(self.key, data, True)
 
         self.trim_count += 1
         if self.trim_count >= self.trim_threshold:
@@ -39,7 +39,9 @@ class FilterRedis(object):
         #for data in self.r.lrange(self.key, 0, limit -1):
         #    tweet = json.loads(data)
 
-        return [json.loads(x) for x in self.r.lrange(self.key, 0, limit - 1) if json.load(s)['received_at'] <= since]
+        data = self.r.lrange(self.key, 0, limit - 1)
+        #import pdb; pdb.set_trace()
+        return [json.loads(x) for x in data if json.loads(x)['received_at'] > since]
 
 
 
