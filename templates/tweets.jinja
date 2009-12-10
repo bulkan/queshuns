@@ -1,0 +1,17 @@
+{% for tweet in tweets %}
+<div class="post">
+    <h1 class="title"><a href="http://twitter.com/{{ tweet.username }}/status/{{ tweet.id }}" class="more">{{ tweet.username }}</a> </h1> 
+    <div class="entry">
+        <p> 
+            <img style="padding-right:5px;" align='left' height=45 width=48 src="{{ tweet.profile_image_url }}">
+            <span> {{ tweet.text }} <span>
+        </p>
+    </div>
+</div>
+{% endfor %}
+
+{% if tweets %}
+<script>
+    window.latestTweet = {{ tweets.0.received_at }};
+</script>
+{% endif %}
