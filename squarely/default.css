@@ -204,10 +204,10 @@ input, textarea, select {
 /* Post */
 
 .post {
-	border: 10px #8FD3EF solid;
-	padding: 15px 20px;
+	border: 5px #8FD3EF solid;
+	padding: 5px 5px;
 	background: url(images/img04.gif) repeat left top;
-	margin-bottom: 20px;
+	margin-bottom: 4px;
 }
 
 .post .title {
