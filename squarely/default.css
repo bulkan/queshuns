@@ -31,7 +31,7 @@ h2 {
 }
 
 p, ul, ol {
-	margin: 0 0 1em 0;
+	margin: 0 0 2em 0;
 	text-align: justify;
 	/*line-height: 20px;*/
 }
@@ -219,7 +219,7 @@ input, textarea, select {
 	width: 520px;
 	padding: 0px 0 0 0px;
 	background: url(images/img08.jpg) no-repeat left top;
-	font-size: 24px;
+	font-size: 20px;
 	color: #FFFFFF;
 }
 
