@@ -29,7 +29,7 @@ class Questions(object):
 
     @cherrypy.expose()
     def index(self):
-        tweets =  self.fr.tweets()
+        tweets =  self.fr.tweets(since=0)
 
         return render_template('index', tweets=tweets)
 
@@ -41,5 +41,6 @@ class Questions(object):
 
         return render_template('tweets', tweets=tweets)
 
-
+#cherrypy.config.update({'server.socket_host': '0.0.0.0',
+#                           'server.socket_port': 8085})
 cherrypy.quickstart(Questions())
