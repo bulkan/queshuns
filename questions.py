@@ -24,6 +24,11 @@ def render_template(template,**context):
 
 # QUESHUNS
 class Questions(object):
+    _cp_config = { 
+            'tools.encode.on':True,
+            'tools.encode.encoding':'utf8',
+            } 
+    
 
     fr = FilterRedis()
 
@@ -36,7 +41,7 @@ class Questions(object):
     @cherrypy.expose()
     def latest(self, since):
         if not since:
-            return
+            since = 0
         tweets = self.fr.tweets(limit=5, since=float(since))
 
         return render_template('tweets', tweets=tweets)

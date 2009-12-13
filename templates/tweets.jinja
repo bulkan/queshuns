@@ -1,3 +1,5 @@
+{% if tweets %}
+<div class='latest' style='display:none;'>
 {% for tweet in tweets %}
 <div class="post">
     <h1 class="title"><a href="http://twitter.com/{{ tweet.username }}/status/{{ tweet.id }}" class="more">{{ tweet.username }}</a> </h1> 
@@ -9,8 +11,8 @@
     </div>
 </div>
 {% endfor %}
+</div>
 
-{% if tweets %}
 <script>
     window.latestTweet = {{ tweets.0.received_at }};
 </script>

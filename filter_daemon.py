@@ -7,8 +7,6 @@ import time
 import redis
 import tweetstream
 
-
-
 try:
     import simplejson as json
 except:
@@ -36,28 +34,14 @@ class FilterRedis(object):
             self.trim_count = 0
 
     def tweets(self, limit=15, since=0):
-        #for data in self.r.lrange(self.key, 0, limit -1):
-        #    tweet = json.loads(data)
-
         data = self.r.lrange(self.key, 0, limit - 1)
-        #import pdb; pdb.set_trace()
-        return [json.loads(x) for x in data if json.loads(x)['received_at'] > since]
-
-
-
-    #@db.list_range(REDIS_KEY, 0, limit - 1).collect {|t|
-    #  Tweet.new(JSON.parse(t))
-    #}.reject {|t| t.received_at <= since}  # In 1.8.7, should use drop_while instead
+        return [json.loads(x) for x in data if int(json.loads(x)['received_at']) > since]
 
 
 if __name__ == '__main__':
-
-
     fr = FilterRedis()
 
     words = ["why", "how", "when", "lol", "feeling"]
-
-
 
     with tweetstream.TrackStream("placidified", "ishopsin3021", words) as stream:
         for tweet in stream:
