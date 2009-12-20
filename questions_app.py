@@ -1,4 +1,5 @@
 import time
+import os
 
 import cherrypy
 import jinja2
@@ -19,8 +20,11 @@ def jsonify_tool_callback(*args, **kwargs):
 
 cherrypy.tools.jsonify = cherrypy.Tool('before_finalize', jsonify_tool_callback, priority=30) 
 
+root_path = os.path.dirname(__file__)
+
+
 # jinja2 template renderer
-env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
+env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(root_path, 'templates')))
 def render_template(template,**context):
   global env
   template = env.get_template(template+'.jinja')
@@ -62,13 +66,29 @@ class Questions(object):
 
         return render_template('tweets', tweets=tweets)
 
-cherrypy.config.update({'server.socket_host': '0.0.0.0',
-                           'server.socket_port': 8085})
+def setup_server():
+    # Set up site-wide config. Do this first so that,
+    # if something goes wrong, we get a log.
+    cherrypy.config.update({'environment': 'production',
+                    'log.screen': False,
+                    'show_tracebacks': False,
+                    'log.error_file': '/tmp/site.log',
+                    })
 
-#engine = cherrypy.engine
-#from cherrypy.process import plugins, servers
-#cherrypy.config.update({'log.screen': False})
-#plugins.Daemonizer(engine).subscribe()
+    cherrypy.tree.mount(Questions())
 
-#engine.start()
-cherrypy.quickstart(Questions())
+
+
+
+if __name__ == '__main__':
+    setup_server()
+    #cherrypy.config.update({'server.socket_host': '0.0.0.0',
+    #                           'server.socket_port': 8085})
+
+    #engine = cherrypy.engine
+    #from cherrypy.process import plugins, servers
+    #cherrypy.config.update({'log.screen': False})
+    #plugins.Daemonizer(engine).subscribe()
+
+    #engine.start()
+    #cherrypy.quickstart(Questions())
