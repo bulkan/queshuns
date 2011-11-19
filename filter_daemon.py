@@ -5,6 +5,8 @@ import tweepy
 
 import json
 
+from auth import username, password
+
 
 class FilterRedis(object):
 
@@ -69,8 +71,7 @@ if __name__ == '__main__':
 
     words = ["why", "how", "when", "where", "who", "feeling", "lol"]
     
-    # PUT YOUR AUTH DETAILS HERE
-    auth = tweepy.auth.BasicAuthHandler("", "")
+    auth = tweepy.auth.BasicAuthHandler(username, password)
 
     stream = tweepy.Stream(auth, StreamWatcherListener(), timeout=None)
     stream.filter(None, words)
