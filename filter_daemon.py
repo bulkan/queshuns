@@ -1,25 +1,15 @@
-from __future__ import with_statement
-
-from datetime import datetime
-
 import time
 
 import redis
 import tweepy
 
-try:
-    import simplejson as json
-except:
-    import json
-
-
-
+import json
 
 
 class FilterRedis(object):
 
     key = "tweets"
-    r = redis.Redis(host='bulkan-evcimen.com', port=6379)
+    r = redis.Redis(host='localhost', port=6379)
     num_tweets = 20
     trim_threshold = 100
 
@@ -77,9 +67,12 @@ class StreamWatcherListener(tweepy.StreamListener):
 if __name__ == '__main__':
     #fr = FilterRedis()
 
-    words = ["why", "how", "when", "lol", "feeling"]
+    words = ["why", "how", "when", "where", "who", "feeling", "lol"]
+    
+    # PUT YOUR AUTH DETAILS HERE
+    auth = tweepy.auth.BasicAuthHandler("", "")
 
-    stream = tweepy.Stream("placidified", "ishopsin3021", StreamWatcherListener(), timeout=None)
+    stream = tweepy.Stream(auth, StreamWatcherListener(), timeout=None)
     stream.filter(None, words)
 
     #with tweetstream.TrackStream("placidified", "ishopsin3021", words) as stream:

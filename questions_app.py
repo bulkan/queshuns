@@ -70,9 +70,9 @@ def setup_server():
     # Set up site-wide config. Do this first so that,
     # if something goes wrong, we get a log.
     cherrypy.config.update({'environment': 'production',
-                    'log.screen': False,
-                    'show_tracebacks': False,
-                    'log.error_file': '/tmp/site.log',
+                    'log.screen': True,
+                    'show_tracebacks': True,
+                    'log.error_file': 'site.log',
                     })
 
     cherrypy.tree.mount(Questions())
@@ -82,13 +82,13 @@ def setup_server():
 
 if __name__ == '__main__':
     setup_server()
-    #cherrypy.config.update({'server.socket_host': '0.0.0.0',
-    #                           'server.socket_port': 8085})
+    cherrypy.config.update({'server.socket_host': '0.0.0.0',
+                               'server.socket_port': 8085})
 
-    #engine = cherrypy.engine
+    engine = cherrypy.engine
     #from cherrypy.process import plugins, servers
     #cherrypy.config.update({'log.screen': False})
     #plugins.Daemonizer(engine).subscribe()
 
-    #engine.start()
+    engine.start()
     #cherrypy.quickstart(Questions())
