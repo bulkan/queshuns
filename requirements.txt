@@ -1,0 +1,5 @@
+CherryPy==3.2.0
+Jinja2==2.6
+oauth==1.0a
+redis==2.2.4
+tweepy==1.8
