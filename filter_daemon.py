@@ -5,7 +5,7 @@ import tweepy
 
 import json
 
-from auth import username, password
+from auth import consumer_key, consumer_secret, access_token_secret, access_token
 
 
 class FilterRedis(object):
@@ -70,8 +70,9 @@ if __name__ == '__main__':
     #fr = FilterRedis()
 
     words = ["why", "how", "when", "where", "who", "feeling", "lol"]
-    
-    auth = tweepy.auth.BasicAuthHandler(username, password)
+
+    auth = tweepy.auth.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
 
     stream = tweepy.Stream(auth, StreamWatcherListener(), timeout=None)
     stream.filter(None, words)
