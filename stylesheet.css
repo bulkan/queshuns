@@ -1,0 +1,129 @@
+html,body{
+    text-align:center;
+    margin:0 !important;
+    padding:0 !important;
+    max-width: 100%;
+    background-image: url('img/brickwall.png');
+    background-repeat: repeat;
+}    
+
+.main-title{
+    background-color: #5990B4;
+}
+
+#down-triangle { 
+   display: block;
+   margin-left: 0 !important;
+   width: 0; 
+   height: 0;
+   border-top: 65px solid #5990B4;
+   border-left: 228px solid transparent; 
+   border-right: 228px solid transparent; 
+}
+
+
+#queshuns{
+    display:block;
+    margin:auto;
+    height:175px;
+    padding-top: -30px;
+}
+
+.heading-text{
+    margin-right: 50px;
+    margin-left: 50px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 16px;
+    color: white;
+    border-top: white 1px solid;
+    border-bottom: white 1px solid;
+    padding-top:15px;
+    padding-bottom: 15px;
+    line-height: 21px;
+}
+
+#bold{
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+    font-weight:700;
+    line-height: 21px;
+}
+
+.contact-buttons a{
+	-webkit-transition: all .5s ease;
+	 -moz-transition: all .5s ease;
+	 -o-transition: all .5s ease;
+	 -ms-transition: all .5s ease;
+	 transition: all .5s ease;
+}
+
+.contact-buttons{
+	width: 100%;
+    text-align: center !important;
+    display: inline;
+    float:right;
+}	
+
+.contact-buttons ul{
+	text-align: center;
+	list-style-type: none;
+    margin-left: 0 !important;
+    padding-top: 8px;
+}
+
+.contact-buttons ul li{
+    display: inline;
+    padding: 5px;
+}
+
+i.ss-icon{
+	color: white;
+	font-size: 25px;
+	text-align: center;
+    line-height:35px;
+}
+
+.contact-buttons a:hover{
+    text-decoration:none;
+}
+
+#website{
+    font-family: 'Pacifico', cursive;
+    font-size: 35px;
+    color: white;
+    line-height: 2px;
+}
+
+
+
+
+.post{
+    background-color: #C9DBE7;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+    line-height: 0px;
+    text-align:left !important;
+    color: #5990B4;
+    margin-top: 15px;
+}
+
+.post a{
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 30px;
+    font-weight:700;
+    color: #5990B4;
+    line-height: 55px;
+}
+
+.post img{
+    padding:15px;
+    float: left;
+    height:50px; 
+    width:50px; 
+    display:block;
+}
+
+
+
+
+
