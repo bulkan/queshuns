@@ -11,14 +11,33 @@ html,body{
     background-color: #5990B4;
 }
 
-#down-triangle{ 
-   display: block;
-   margin-left: 0 !important;
-   width: 0; 
-   height: 0;
-   border-top: 65px solid #5990B4;
-   border-left: 228px solid transparent; 
-   border-right: 228px solid transparent; 
+#down-triangle{
+    display: inline-block;
+    position: relative;
+    height: 35px;
+    width: 100%;
+    background: #5990B4;
+    overflow: hidden;
+    -webkit-transform: rotate(180deg);     
+    -moz-transform: rotate(180deg);       
+    -o-transform: rotate(180deg);        
+    -ms-transform: rotate(180deg);      
+    transform: rotate(180deg);
+}
+
+#down-triangle:after {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -250px;
+    content: '';
+    background-image: url('img/brickwall.png');
+    width: 500px;
+    height: 0;
+    border: 250px solid transparent;
+    border-top: none;
+    border-bottom: 38px solid #5990B4;
+    box-sizing: border-box;
 }
 
 #queshuns{
@@ -47,10 +66,10 @@ html,body{
     line-height: 21px;
     font-weight:700;
     -webkit-transition: all .5s ease;
-	 -moz-transition: all .5s ease;
-	 -o-transition: all .5s ease;
-	 -ms-transition: all .5s ease;
-	 transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    transition: all .5s ease;
 }
 
 .heading-text a:hover{
@@ -67,10 +86,10 @@ html,body{
 
 .contact-buttons a{
 	-webkit-transition: all .5s ease;
-	 -moz-transition: all .5s ease;
-	 -o-transition: all .5s ease;
-	 -ms-transition: all .5s ease;
-	 transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    transition: all .5s ease;
 }
 
 .contact-buttons{
@@ -106,9 +125,9 @@ i.ss-icon{
 
 #website a{
     font-family: 'Pacifico', cursive;
-    font-size: 35px;
+    font-size: 250%;
     color: white;
-    line-height: 2px;
+    line-height: 16px;
 }
 
 #website a:hover{
@@ -121,11 +140,13 @@ i.ss-icon{
     font-size: 12px;
     line-height: 10px;
     color: white;
+    margin: 0 !important;
 }
 
 #footer a{
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 12px;
+    line-height: 12px;
     color: white;
     font-weight:700;
 }
@@ -150,7 +171,7 @@ i.ss-icon{
 }
 
 .title{
-    padding-top: 15px;
+    padding: 15px;
 }
 
 .post a{
@@ -169,6 +190,7 @@ i.ss-icon{
 .post a:hover{
     opacity: .8;
 }
+
 .post img{
     padding:15px;
     float: left;
@@ -178,6 +200,31 @@ i.ss-icon{
 }
 
 
-
+/* Large desktop */
+@media (min-width: 1200px) { ... }
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {     
+    html,body{
+        margin-left:20px !important;
+        margin-right:20px !important;
+    }  
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+    html,body{
+        margin-left:20px !important;
+        margin-right:20px !important;
+    }  
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+    html,body{
+        margin-left:20px !important;
+        margin-right:20px !important;
+    }  
+}
 
 
