@@ -59,7 +59,7 @@ if __name__ == '__main__':
     current_dir = os.path.dirname(os.path.abspath(__file__))
     cherrypy.config.update({
         'server.socket_host': '0.0.0.0',
-        'server.socket_port': 8085,
+        'server.socket_port': 8000,
         'environment': 'production',
         'log.screen': True,
         'show_tracebacks': True,

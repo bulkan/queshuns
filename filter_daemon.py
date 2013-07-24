@@ -36,6 +36,8 @@ class FilterRedis(object):
 class StreamWatcherListener(tweepy.StreamListener):
     fr = FilterRedis()
 
+    tweet_count = 0
+
     def on_status(self, status):
         tweet = status
         try:
@@ -53,6 +55,11 @@ class StreamWatcherListener(tweepy.StreamListener):
                                  } 
                                )
                     )
+            self.tweet_count += 1
+            if self.tweet_count >= 20:
+                print 'got 20 tweets sleeping'
+                time.sleep(120)
+                self.tweet_count = 0
         except:
             # Catch any unicode errors while printing to console
             # and just ignore them to avoid breaking application.
@@ -60,10 +67,12 @@ class StreamWatcherListener(tweepy.StreamListener):
 
     def on_error(self, status_code):
         print 'An error has occured! Status code = %s' % status_code
+        time.sleep(20)
         return True  # keep stream alive
 
     def on_timeout(self):
         print 'Snoozing Zzzzzz'
+        time.sleep(10)
 
 
 if __name__ == '__main__':
