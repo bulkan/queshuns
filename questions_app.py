@@ -1,43 +1,37 @@
 import time
+import json
 import os
 
 import cherrypy
 import jinja2
+
 from filter_daemon import *
 
-try:
-    import json
-except:
-    import simplejson as json
-
-from simplejson import JSONEncoder
-encoder = JSONEncoder()
+encoder = json.JSONEncoder()
 
 def jsonify_tool_callback(*args, **kwargs):
     response = cherrypy.response
     response.headers['Content-Type'] = 'application/json'
     response.body = encoder.iterencode(response.body)
 
-cherrypy.tools.jsonify = cherrypy.Tool('before_finalize', jsonify_tool_callback, priority=30) 
+cherrypy.tools.jsonify = cherrypy.Tool('before_finalize', jsonify_tool_callback, priority=30)
 
 root_path = os.path.dirname(__file__)
 
-
 # jinja2 template renderer
 env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(root_path, 'templates')))
-def render_template(template,**context):
+
+def render_template(template, **context):
   global env
-  template = env.get_template(template+'.jinja')
+  template = env.get_template(template+'.html')
   return template.render(context)
 
 
-# QUESHUNS
 class Questions(object):
     _cp_config = { 
-            'tools.encode.on':True,
-            'tools.encode.encoding':'utf8',
-            } 
-    
+        'tools.encode.on':True,
+        'tools.encode.encoding':'utf8',
+    }
 
     fr = FilterRedis()
 
@@ -45,50 +39,43 @@ class Questions(object):
     def index(self):
         tweets =  self.fr.tweets(since=0)
 
-        return render_template('index', tweets=tweets)
+        return render_template('queshuns', tweets=tweets)
 
     @cherrypy.expose()
     @cherrypy.tools.jsonify()
     def latest(self, since, nt):
-        #cherrypy.response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate';
-        #cherrypy.response.headers['Cache-Control'] = 'post-check=0, pre-check=0';
-        #cherrypy.response.headers['Pragma'] = 'no-cache';
-
         cherrypy.response.headers['Expires'] = 'Sun, 19 Nov 1978 05:00:00 GMT'
         cherrypy.response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0'
         cherrypy.response.headers['Pragma'] = 'no-cache'
         #cherrypy.response.headers['Content-Type'] = "application/json"
 
-
-        if not since:
-            since = 0
+        since = 0 if not since else since
         tweets = self.fr.tweets(limit=5, since=float(since))
 
         return render_template('tweets', tweets=tweets)
 
-def setup_server():
-    # Set up site-wide config. Do this first so that,
-    # if something goes wrong, we get a log.
-    cherrypy.config.update({'environment': 'production',
-                    'log.screen': True,
-                    'show_tracebacks': True,
-                    'log.error_file': 'site.log',
-                    })
-
-    cherrypy.tree.mount(Questions())
-
-
-
 
 if __name__ == '__main__':
-    setup_server()
-    cherrypy.config.update({'server.socket_host': '0.0.0.0',
-                               'server.socket_port': 8085})
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    cherrypy.config.update({
+        'server.socket_host': '0.0.0.0',
+        'server.socket_port': 8085,
+        'environment': 'production',
+        'log.screen': True,
+        'show_tracebacks': True,
+        'log.error_file': 'site.log',
+    })
 
-    engine = cherrypy.engine
+    conf = { '/newdesign': { 
+        'tools.staticdir.on': True,
+        'tools.staticdir.dir': os.path.join(current_dir, 'newdesign')
+        }
+    }
+
+    #engine = cherrypy.engine
     #from cherrypy.process import plugins, servers
     #cherrypy.config.update({'log.screen': False})
     #plugins.Daemonizer(engine).subscribe()
 
-    engine.start()
-    #cherrypy.quickstart(Questions())
+    #engine.start()
+    cherrypy.quickstart(Questions(), '/', config=conf)
