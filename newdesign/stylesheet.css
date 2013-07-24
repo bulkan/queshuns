@@ -9,13 +9,14 @@ html,body{
 
 .main-title{
     background-color: #5990B4;
+    max-width: 100%;
 }
 
 #down-triangle{
-    display: inline-block;
+    display: block;
     position: relative;
     height: 35px;
-    width: 100.05%;
+    width: 100.1%;
     background: #5990B4;
     overflow: hidden;
     -webkit-transform: rotate(180deg);     
@@ -26,15 +27,16 @@ html,body{
 }
 
 #down-triangle:after {
+    display:block;
     position: absolute;
     top: 0;
     left: 50%;
-    margin-left: -250px;
+    margin-left: -400px;
     content: '';
     background-image: url('img/brickwall.png');
-    width: 500px;
+    width: 800px;
     height: 0;
-    border: 250px solid transparent;
+    border: 400px solid transparent;
     border-top: none;
     border-bottom: 38px solid #5990B4;
     box-sizing: border-box;
@@ -48,21 +50,23 @@ html,body{
 .heading-text{
     margin-right: 50px;
     margin-left: 50px;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 16px;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
     color: #233948;
     border-top: #f89335 1px solid;
     border-bottom: #f89335 1px solid;
     padding-top:10px;
     padding-bottom: 10px;
-    line-height: 21px;
+    line-height: 19px;
 }
 
 .heading-text a{
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 16px;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
     color: #233948;
-    line-height: 21px;
+    line-height: 19px;
     font-weight:700;
     -webkit-transition: all .5s ease;
     -moz-transition: all .5s ease;
@@ -78,8 +82,8 @@ html,body{
 }
 
 #bold{
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 20px;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 18px;
     font-weight:700;
     line-height: 21px;
     color:#233948;
@@ -145,18 +149,20 @@ i.ss-icon{
 }
 
 #footer{
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 12px;
-    line-height: 10px;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 8px;
     color: #233948;
     margin: 0 !important;
     padding-bottom: 2px;
 }
 
 #footer a{
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 12px;
-    line-height: 12px;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 10px;
     color: #233948;
     font-weight:700;
 }
@@ -186,9 +192,9 @@ i.ss-icon{
 }
 
 .post a{
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 28px;
-    line-height: 29px;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 26px;
+    line-height: 27px;
     font-weight:700;
     color: #233948;
     -webkit-transition: all .5s ease;
@@ -204,9 +210,10 @@ i.ss-icon{
 }
 
 .tweet{
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 18px;
-    line-height: 22px;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px;
     text-align:left !important;
     color: #5990B4;
     margin-bottom: 0;
