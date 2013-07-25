@@ -279,4 +279,19 @@ a.tweet:hover{
         margin-left: 20px;
     }
 
+    .post-text {
+        position: relative;
+    }
+
+    .title {
+        position: absolute;
+        bottom: 100%;
+        right: 20px;
+        height: 50px;
+    }
+
+    a.tweet {
+        padding-bottom: 5px;
+    }
+
 }
