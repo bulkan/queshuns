@@ -188,13 +188,12 @@ i.ss-icon{
 
 .post-text{
     padding: 15px;
-    text-align: left;
 }
 
 .post a{
     font-family: 'Oxygen', sans-serif;
-    font-size: 26px;
-    line-height: 27px;
+    font-size: 19px;
+    line-height: 22px;
     font-weight:700;
     color: #233948;
     -webkit-transition: all .5s ease;
@@ -202,6 +201,8 @@ i.ss-icon{
     -o-transition: all .5s ease;
     -ms-transition: all .5s ease;
     transition: all .5s ease;
+    float: right;
+    padding-top: 5px;
 }
 
 .post a:hover{
@@ -212,12 +213,11 @@ i.ss-icon{
 .tweet{
     font-family: 'Oxygen', sans-serif;
     font-weight: 400;
-    font-size: 15px;
-    line-height: 19px;
+    font-size: 20px;
+    line-height: 24px;
     text-align:left !important;
     color: #5990B4;
     margin-bottom: 0;
-    padding-top: 5px;
 }
 
 .tweet a:hover{
