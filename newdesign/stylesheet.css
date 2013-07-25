@@ -188,12 +188,13 @@ i.ss-icon{
 
 .post-text{
     padding: 15px;
+    margin: 0;
 }
 
 .post a{
     font-family: 'Oxygen', sans-serif;
-    font-size: 19px;
-    line-height: 22px;
+    font-size: 17px;
+    line-height: 20px;
     font-weight:700;
     color: #233948;
     -webkit-transition: all .5s ease;
@@ -202,7 +203,7 @@ i.ss-icon{
     -ms-transition: all .5s ease;
     transition: all .5s ease;
     float: right;
-    padding-top: 5px;
+    padding: 5px;
 }
 
 .post a:hover{
