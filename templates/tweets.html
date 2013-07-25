@@ -6,8 +6,8 @@
         <img src="{{ tweet.profile_image_url }}"/>
     </div>
     <div class="post-text span10">
-        <a href="http://twitter.com/{{ tweet.username }}/status/{{ tweet.id }}" class="title">{{ tweet.username }}</a> 
-        <p class="tweet">{{ tweet.text }}</p>
+        <p><a href="http://twitter.com/{{ tweet.username }}/status/{{ tweet.id }}" class="tweet">{{ tweet.text }}</a></p>
+        <p><a href="http://twitter.com/{{ tweet.username }}" class="title">{{ tweet.username }}</a></p>
     </div>
 </div>
 {% endfor %}
