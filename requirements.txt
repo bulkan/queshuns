@@ -2,4 +2,4 @@ CherryPy
 Jinja2
 oauth
 redis
-tweepy
+twython
