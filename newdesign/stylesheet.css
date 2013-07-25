@@ -185,11 +185,11 @@ i.ss-icon{
     -moz-box-shadow: 0 8px 6px -6px #233948;
     box-shadow: 0 8px 6px -6px #233948;
     text-align: left;
-    padding: 15px;
 }
 
 .post-text{
     margin-left: 0!important;
+    padding:15px
 }
 
 a.title{
@@ -228,7 +228,7 @@ a.tweet:hover{
     color: #233948;
 }
 
-}
+
 
 .post-image{
     padding:20px;
@@ -279,7 +279,4 @@ a.tweet:hover{
         margin-left: 20px;
     }
 
-    .post {
-        padding: 5px;
-    }
 }
