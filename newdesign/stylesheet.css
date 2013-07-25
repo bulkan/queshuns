@@ -184,14 +184,16 @@ i.ss-icon{
     -webkit-box-shadow: 0 8px 6px -6px #233948;
     -moz-box-shadow: 0 8px 6px -6px #233948;
     box-shadow: 0 8px 6px -6px #233948;
+    text-align: left;
+    padding: 15px;
 }
 
 .post-text{
     padding: 15px;
-    margin: 0;
+    margin-left: 0!important;
 }
 
-.post a{
+a.title{
     font-family: 'Oxygen', sans-serif;
     font-size: 17px;
     line-height: 20px;
@@ -206,23 +208,25 @@ i.ss-icon{
     padding: 5px;
 }
 
-.post a:hover{
+a.title:hover{
     color:#f89335;
     text-decoration: none;
 }
 
-.tweet{
+a.tweet{
     font-family: 'Oxygen', sans-serif;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
-    text-align:left !important;
+    float:left;
     color: #5990B4;
     margin-bottom: 0;
 }
 
-.tweet a:hover{
+a.tweet:hover{
     opacity: .8;
+    text-decoration: none;
+    color: #233948;
 }
 
 .post-image{
