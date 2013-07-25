@@ -205,7 +205,7 @@ a.title{
     -ms-transition: all .5s ease;
     transition: all .5s ease;
     float: right;
-    padding: 5px;
+    padding-top: 30px;
 }
 
 a.title:hover{
@@ -227,6 +227,8 @@ a.tweet:hover{
     opacity: .8;
     text-decoration: none;
     color: #233948;
+}
+
 }
 
 .post-image{
