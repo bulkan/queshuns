@@ -189,7 +189,6 @@ i.ss-icon{
 }
 
 .post-text{
-    padding: 15px;
     margin-left: 0!important;
 }
 
@@ -279,6 +278,11 @@ a.tweet:hover{
         margin-right: 20px;
         margin-left: 20px;
     }
+
+    .post {
+        padding: 5px;
+    }
+}
 }
 
 
