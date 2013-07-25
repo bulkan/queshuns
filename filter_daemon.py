@@ -1,9 +1,8 @@
 import time
+import json
 
 import redis
-import tweepy
-
-import json
+from twython import TwythonStreamer
 
 from auth import consumer_key, consumer_secret, access_token_secret, access_token
 
@@ -18,7 +17,6 @@ class FilterRedis(object):
     def __init__(self):
         self.trim_count = 0
 
-
     def push(self, data):
         self.r.lpush(self.key, data)
 
@@ -27,48 +25,48 @@ class FilterRedis(object):
             self.r.ltrim(self.key, 0, self.num_tweets)
             self.trim_count = 0
 
-
     def tweets(self, limit=15, since=0):
         data = self.r.lrange(self.key, 0, limit - 1)
         return [json.loads(x) for x in data if int(json.loads(x)['received_at']) > since]
 
 
-class StreamWatcherListener(tweepy.StreamListener):
+class StreamWatcherListener(TwythonStreamer):
     fr = FilterRedis()
 
     tweet_count = 0
 
-    def on_status(self, status):
-        tweet = status
+    def on_success(self, data):
+        tweet = data
+        if not 'text' in tweet:
+            return
         try:
-            if '@' in tweet.text or not tweet.text.endswith('?'):
+            if '@' in tweet['text'] or not tweet['text'].endswith('?'):
                 return True
-            print  tweet.text.encode('utf-8')
-            print '\n %s  %s  via %s\n' % (status.author.screen_name, status.created_at, status.source)
-            self.fr.push(json.dumps( {'id':tweet.id,
-                                 'text':tweet.text,
-                                 'username':tweet.author.screen_name,
-                                 'userid':tweet.author.id,
-                                 'name':tweet.author.name,
-                                 'profile_image_url':tweet.author.profile_image_url,
-                                 'received_at':time.time()
-                                 } 
-                               )
-                    )
+            print tweet['text'].encode('utf-8')
+            print '\n %s  %s\n' % (tweet['user']['screen_name'], tweet['created_at'])
+
+            self.fr.push(json.dumps( {
+                'id': tweet['id'],
+                'text': tweet['text'],
+                'username': tweet['user']['screen_name'],
+                'userid': tweet['user']['id'],
+                'name': tweet['user']['name'],
+                'profile_image_url': tweet['user']['profile_image_url'],
+                'received_at': time.time()
+            }))
             self.tweet_count += 1
-            if self.tweet_count >= 20:
-                print 'got 20 tweets sleeping'
-                time.sleep(120)
+            if self.tweet_count >= 10:
+                print 'got 10 tweets sleeping'
+                time.sleep(25)
                 self.tweet_count = 0
-        except:
+        except Exception, e:
             # Catch any unicode errors while printing to console
             # and just ignore them to avoid breaking application.
-            pass
+            print e
 
-    def on_error(self, status_code):
+    def on_error(self, status_code, data):
         print 'An error has occured! Status code = %s' % status_code
         time.sleep(20)
-        return True  # keep stream alive
 
     def on_timeout(self):
         print 'Snoozing Zzzzzz'
@@ -76,28 +74,13 @@ class StreamWatcherListener(tweepy.StreamListener):
 
 
 if __name__ == '__main__':
-    #fr = FilterRedis()
-
     words = ["why", "how", "when", "where", "who", "feeling", "lol"]
 
-    auth = tweepy.auth.OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token, access_token_secret)
+    #auth = tweepy.auth.OAuthHandler(consumer_key, consumer_secret)
+    #auth.set_access_token(access_token, access_token_secret)
 
-    stream = tweepy.Stream(auth, StreamWatcherListener(), timeout=None)
-    stream.filter(None, words)
+    #stream = tweepy.Stream(auth, StreamWatcherListener(), timeout=None)
+    #stream.filter(None, words)
 
-    #with tweetstream.TrackStream("placidified", "ishopsin3021", words) as stream:
-    #    for tweet in stream:
-    #        if 'text' not in tweet: continue
-    #        if '@' in tweet['text'] or not tweet['text'].endswith('?'):
-    #            continue
-    #        fr.push(json.dumps( {'id':tweet['id'],
-    #                             'text':tweet['text'],
-    #                             'username':tweet['user']['screen_name'],
-    #                             'userid':tweet['user']['id'],
-    #                             'name':tweet['user']['name'],
-    #                             'profile_image_url':tweet['user']['profile_image_url'],
-    #                             'received_at':time.time()}
-    #                             )
-    #                )
-    #        print tweet['user']['screen_name'],':', tweet['text'].encode('utf-8')
+    stream = StreamWatcherListener(consumer_key, consumer_secret, access_token, access_token_secret)
+    stream.statuses.filter(track=words)
