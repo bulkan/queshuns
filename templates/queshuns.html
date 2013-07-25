@@ -1,0 +1,108 @@
+<html>
+ <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+     <link rel="shortcut icon" href="/media/images/favicon.ico" type="image/x-icon">
+     <link rel="icon" type="image/png" href="/media/images/favicon.ico">
+     <link href="../newdesign/bootstrap.min.css" rel="stylesheet"> 
+     <link href="../newdesign/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+     <link href='http://fonts.googleapis.com/css?family=Oxygen:400,700' rel='stylesheet' type='text/css'>
+     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+     <link type="text/css" rel="stylesheet" href="../newdesign/stylesheet.css"/> 
+     <link href="../newdesign/webfonts/ss-social-circle.css" rel="stylesheet"/>
+     <title>queshuns</title>
+</head>
+
+<body>
+    <div class="row-fluid">
+        <div class="main-title span4 offset4">
+            <img src="../newdesign/img/queshuns.png" id="queshuns"/>
+            
+            <p class="heading-text"> <span id="bold">queshuns.com is a real-time feed of tweets that are questions.</span> <br><br> 
+This site was built using <a href="http://code.google.com/p/redis">Redis</a>, <a href="http://www.cherrypy.org/">CherryPy</a>, <a            href="http://jinja.pocoo.org/2/">Jinja2</a>, <a href="http://pypi.python.org/pypi/tweetstream">tweetstream</a>,
+and <a href="http://jquery.com">jQuery</a>. Read <a href="http://bulkan-evcimen.com/building_twitter_filter_cherrypy_redis_tweetstream.html">this</a> blog post for more technical details.
+<a href="http://www.digitalhobbit.com/2009/11/08/building-a-twitter-filter-with-sinatra-redis-and-tweetstream/">See this post</a> for Ruby version. </p>     
+                
+            <div class="contact">
+                <div class="contact-buttons">
+                    <ul>
+                        <li id="twitter">
+                            <a href="http://twitter.com/bulkanevcimen"> <i class="ss-icon"> &#xF611;</i></a>
+                        </li>    
+                
+                        <li id="github">
+                            <a href="http://github.com/bulkan"> <i class="ss-icon"> &#xF671;</i></a>
+                        </li>    
+                    </ul>
+                        <p id="website"><a href="http://bulkan-evcimen.com">bulkan-evcimen.com</a></p>
+                        <p id="footer">© 2013 This page was designed and developed by <a href="http://www.aurorachiarello.com/"> aurora chiarello</a>.</p>
+                </div>
+            </div>
+                <div class="row-fluid">
+                    <div class="triangle span12" id="down-triangle">
+                    </div>
+                </div>
+            </div>
+        </div>   
+    
+    
+<div class="queshuns-content row-fluid">  
+    <div class="span6 offset3" id="content">
+        
+{% for tweet in tweets %}
+<div class="post row-fluid">
+    <div class="post-image span2">
+        <img src="{{ tweet.profile_image_url }}"/>
+    </div>
+    <div class="post-text span10">
+        <a href="http://twitter.com/{{ tweet.username }}/status/{{ tweet.id }}" class="title">{{ tweet.username }}</a> 
+        <p class="tweet">{{ tweet.text }}</p>
+    </div>
+</div>
+{% endfor %}
+    </div>
+</div>
+
+<script src="../newdesign/assets/js/jquery.js"></script> 
+<script src="../newdesign/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+{% if tweets %}
+window.latestTweet = {{ tweets.0.received_at }};
+{% else %}
+window.latestTweet = 0;
+{% endif %}
+
+function refreshTweets() {
+  $.getJSON('/latest', {since: window.latestTweet, nt:(new Date()).getTime()},
+    function(data) {
+      $('#content').prepend(data[0]); 
+      $('.latest').slideDown('slow', function() { $(this).removeClass('latest');});
+      $('#content div:gt(50)').remove(); 
+        setTimeout(refreshTweets, 5000);
+    }
+  );
+};
+
+$(document).ready(function() {
+  setTimeout(refreshTweets, 10000);
+});
+</script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1620638-7']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
