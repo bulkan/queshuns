@@ -65,6 +65,7 @@ and <a href="http://jquery.com">jQuery</a>. Read <a href="http://bulkan-evcimen.
 </div>
 
 <script src="../newdesign/assets/js/jquery.js"></script> 
+<script src="../newdesign/assets/js/jquery.visible.min.js"></script> 
 <script src="../newdesign/assets/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
@@ -74,19 +75,37 @@ window.latestTweet = {{ tweets.0.received_at }};
 window.latestTweet = 0;
 {% endif %}
 
+var refreshTrigged = false;
+
 function refreshTweets() {
-  $.getJSON('/latest', {since: window.latestTweet, nt:(new Date()).getTime()},
-    function(data) {
-      $('#content').prepend(data[0]); 
-      $('.latest').slideDown('slow', function() { $(this).removeClass('latest');});
-      $('#content div:gt(50)').remove(); 
+  var visible = $("#down-triangle").visible();
+  if (visible) {
+    //console.log('refreshTweets') ;
+    $.getJSON('/latest', {since: window.latestTweet, nt:(new Date()).getTime()},
+      function(data) {
+        $('#content').prepend(data[0]); 
+        $('.latest').slideDown('slow', function() { $(this).removeClass('latest');});
+        $('#content div:gt(50)').remove(); 
         setTimeout(refreshTweets, 2000);
-    }
-  );
+      }
+    );
+  } else {
+    refreshTrigged = false;
+  }
 };
 
 $(document).ready(function() {
-  setTimeout(refreshTweets, 10000);
+
+  refreshTweets();
+
+  $(window).on('scroll', function() {
+      var visible = $("#down-triangle").visible();
+      //console.log(visible);
+      if (visible && ! refreshTrigged) {
+          refreshTrigged = true;
+          setTimeout(refreshTweets, 2000);
+      }
+ });
 });
 </script>
 
