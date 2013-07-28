@@ -3,8 +3,8 @@
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-     <link rel="shortcut icon" href="/media/images/favicon.ico" type="image/x-icon">
-     <link rel="icon" type="image/png" href="/media/images/favicon.ico">
+     <link rel="shortcut icon" href="../newdesign/assets/ico/favicon.ico" type="image/x-icon">
+     <link rel="icon" type="image/png" href="../newdesign/assets/ico/favicon.ico">
      <link href="../newdesign/bootstrap.min.css" rel="stylesheet"> 
      <link href="../newdesign/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
      <link href='http://fonts.googleapis.com/css?family=Oxygen:400,700' rel='stylesheet' type='text/css'>
@@ -80,7 +80,7 @@ function refreshTweets() {
       $('#content').prepend(data[0]); 
       $('.latest').slideDown('slow', function() { $(this).removeClass('latest');});
       $('#content div:gt(50)').remove(); 
-        setTimeout(refreshTweets, 5000);
+        setTimeout(refreshTweets, 2000);
     }
   );
 };
