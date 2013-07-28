@@ -231,7 +231,8 @@ a.tweet:hover{
 
 
 .post-image{
-    padding:20px;
+    padding-left:20px;
+    padding-top:20px;
     float: left;
     text-align:left;
 }
@@ -283,6 +284,10 @@ a.tweet:hover{
         position: relative;
     }
 
+    .post{
+        padding-bottom: 15px;
+    }
+
     .title {
         position: absolute;
         bottom: 100%;
@@ -290,8 +295,7 @@ a.tweet:hover{
         height: 50px;
     }
 
-    a.tweet {
-        padding-bottom: 5px;
+    a.title {
+        line-height: 90px;
     }
-
 }

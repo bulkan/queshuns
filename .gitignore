@@ -9,3 +9,4 @@ dump.rdb
 bin
 lib
 local
+.Python
