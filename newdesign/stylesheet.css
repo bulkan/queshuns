@@ -1,6 +1,7 @@
 html,body{
     text-align:center;
     margin:0 !important;
+    margin-left: 0!important;
     padding:0 !important;
     max-width: 100%;
     background-image: url('img/brickwall.png');
@@ -50,15 +51,10 @@ html,body{
 .heading-text{
     margin-right: 50px;
     margin-left: 50px;
-    font-family: 'Oxygen', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    color: #233948;
     border-top: #f89335 1px solid;
     border-bottom: #f89335 1px solid;
     padding-top:10px;
     padding-bottom: 10px;
-    line-height: 19px;
 }
 
 .heading-text a{
@@ -228,8 +224,6 @@ a.tweet:hover{
     color: #233948;
 }
 
-
-
 .post-image{
     padding-left:20px;
     padding-top:20px;
@@ -241,6 +235,33 @@ a.tweet:hover{
     max-width: 100%;
 }
 
+.live-feed{
+    background-color: #f89335;
+    margin-top: 20px;
+    border: #f89335 1px solid;
+    -webkit-box-shadow: 0 8px 6px -6px #233948;
+    -moz-box-shadow: 0 8px 6px -6px #233948;
+    box-shadow: 0 8px 6px -6px #233948; 
+    padding-top: 10px;
+}
+
+a.live{
+    font-family: 'Oxygen', sans-serif;
+    font-size: 20px;
+    line-height: 23px;
+    font-weight:700;
+    color: white;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+a.live:hover{
+    color:#233948;
+    text-decoration: none;
+}
 
 /* Large desktop */
 @media (min-width: 1200px) { ... }
