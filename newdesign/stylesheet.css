@@ -246,6 +246,8 @@ a.tweet:hover{
     padding: 10px;
     position: fixed;
     top: 0;
+    left: 50%;
+
 }
 
 a.live{
@@ -279,6 +281,7 @@ a.live:hover{
         margin-right: 40px;
         margin-left: 40px;
     }
+
 }
  
 /* Landscape phone to portrait tablet */
@@ -321,5 +324,14 @@ a.live:hover{
 
     a.title {
         line-height: 90px;
+    }
+
+
+    .live-feed {
+        z-index: 100;
+        padding: 0;
+        margin-top: 1px;
+        left: 0px;
+        width: 100%;
     }
 }
