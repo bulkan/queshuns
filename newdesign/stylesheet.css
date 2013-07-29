@@ -243,11 +243,10 @@ a.tweet:hover{
     -webkit-box-shadow: 0 8px 6px -6px #233948;
     -moz-box-shadow: 0 8px 6px -6px #233948;
     box-shadow: 0 8px 6px -6px #233948; 
-    padding: 10px;
+    padding-top: 8px;
     position: fixed;
     top: 0;
-    left: 50%;
-
+    right: 43%;
 }
 
 a.live{

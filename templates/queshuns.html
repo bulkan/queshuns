@@ -49,28 +49,26 @@ and <a href="http://jquery.com">jQuery</a>. Read <a href="http://bulkan-evcimen.
     
     
 <div class="queshuns-content row-fluid">  
+    <div class="span6 offset3" id="content">
 
                 <div class="row-fluid">
-                    <div class="span1">
-                        <div class="live-feed" id="latest-tweet">
+                    <div class="span2 offset5 live-feed" id="latest-tweet">
                           <p><a href="#" class="live" id="latest-tweet-btn">latest tweets</a></p>
-                        </div>
                     </div>
                 </div>
-    <div class="span6 offset3" id="content">
         
-{% for tweet in tweets %}
-<div class="post row-fluid">
-    <div class="post-image span2">
-        <img src="{{ tweet.profile_image_url }}"/>
+                {% for tweet in tweets %}
+                <div class="post row-fluid">
+                    <div class="post-image span2">
+                        <img src="{{ tweet.profile_image_url }}"/>
+                    </div>
+                    <div class="post-text span10">
+                        <p><a href="http://twitter.com/{{ tweet.username }}/status/{{ tweet.id }}" class="tweet">{{ tweet.text }}</a></p>
+                        <p><a href="http://twitter.com/{{ tweet.username }}" class="title">{{ tweet.username }}</a></p>
+                    </div>
+                </div>
+                {% endfor %}
     </div>
-    <div class="post-text span10">
-        <p><a href="http://twitter.com/{{ tweet.username }}/status/{{ tweet.id }}" class="tweet">{{ tweet.text }}</a></p>
-        <p><a href="http://twitter.com/{{ tweet.username }}" class="title">{{ tweet.username }}</a></p>
-    </div>
-</div>
-{% endfor %}
-</div>
 </div>
 
 
