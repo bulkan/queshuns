@@ -236,13 +236,16 @@ a.tweet:hover{
 }
 
 .live-feed{
+    display: none;
     background-color: #f89335;
     margin-top: 20px;
     border: #f89335 1px solid;
     -webkit-box-shadow: 0 8px 6px -6px #233948;
     -moz-box-shadow: 0 8px 6px -6px #233948;
     box-shadow: 0 8px 6px -6px #233948; 
-    padding-top: 10px;
+    padding: 10px;
+    position: fixed;
+    top: 0;
 }
 
 a.live{
