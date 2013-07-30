@@ -1,11 +1,11 @@
 html,body{
-    text-align:center;
     margin:0 !important;
     margin-left: 0!important;
     padding:0 !important;
     max-width: 100%;
     background-image: url('img/brickwall.png');
     background-repeat: repeat;
+    text-align:center;
 }    
 
 .main-title{
@@ -243,7 +243,7 @@ a.tweet:hover{
     -webkit-box-shadow: 0 8px 6px -6px #233948;
     -moz-box-shadow: 0 8px 6px -6px #233948;
     box-shadow: 0 8px 6px -6px #233948; 
-    padding-top: 8px;
+    padding-top: 8px !important;
     position: fixed;
     top: 0;
     right: 43%;
@@ -276,6 +276,7 @@ a.live:hover{
         margin-left:25px !important;
         margin-right:25px !important;
     }  
+    
     .heading-text{
         margin-right: 40px;
         margin-left: 40px;
@@ -289,9 +290,13 @@ a.live:hover{
         margin-left:20px !important;
         margin-right:20px !important;
     }  
+    
     .heading-text{
         margin-right: 30px;
         margin-left: 30px;
+    }
+    .live-feed{
+        right: 0px;
     }
 }
  
@@ -325,12 +330,11 @@ a.live:hover{
         line-height: 90px;
     }
 
-
     .live-feed {
         z-index: 100;
         padding: 0;
-        margin-top: 1px;
-        left: 0px;
+        margin-top: 0px;
+        right: 0px;
         width: 100%;
     }
 }
