@@ -240,23 +240,20 @@ a.tweet:hover{
     display: none;
     background-color: #f89335;
     margin-top: 20px;
-    margin-left: 20px;
-    border: #f89335 1px solid;
-    border-radius: 50%;
-	width: 60px !important;
-	height: 60px;
+    -webkit-box-shadow: 0 8px 7px -8px #233948;
+    -moz-box-shadow: 0 8px 7px -8px #233948;
+    box-shadow: 0 8px 7px -8px#233948; 
+    padding-top: 6px !important;
     position: fixed;
     top: 0;
-    padding-top: 13px;
-    webkit-box-shadow: 0 8px 7px -8px #233948;
-    -moz-box-shadow: 0 8px 7px -8px #233948;
-    box-shadow: 0 8px 7px -8px #233948;
+    height: 21px;
+    right: 43%;
 }
 
 a.live{
     font-family: 'Oxygen', sans-serif;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 15px;
+    line-height: 18px;
     font-weight:700;
     color: white;
     -webkit-transition: all .5s ease;
