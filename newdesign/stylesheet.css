@@ -55,6 +55,7 @@ html,body{
     border-bottom: #f89335 1px solid;
     padding-top:10px;
     padding-bottom: 10px;
+    color: #233948;
 }
 
 .heading-text a{
@@ -79,9 +80,9 @@ html,body{
 
 #bold{
     font-family: 'Oxygen', sans-serif;
-    font-size: 18px;
+    font-size: 20px;
     font-weight:700;
-    line-height: 21px;
+    line-height: 23px;
     color:#233948;
 }
 
@@ -176,10 +177,10 @@ i.ss-icon{
 .post{
     background-color: white;
     margin-top: 20px;
-    border: #f89335 1px solid;
-    -webkit-box-shadow: 0 8px 6px -6px #233948;
-    -moz-box-shadow: 0 8px 6px -6px #233948;
-    box-shadow: 0 8px 6px -6px #233948;
+    border-top: #f89335 1px solid;
+    -webkit-box-shadow: 0 8px 7px -8px #233948;
+    -moz-box-shadow: 0 8px 7px -8px #233948;
+    box-shadow: 0 8px 7px -8px #233948;
     text-align: left;
 }
 
@@ -192,8 +193,8 @@ a.title{
     font-family: 'Oxygen', sans-serif;
     font-size: 17px;
     line-height: 20px;
-    font-weight:700;
-    color: #233948;
+    font-weight:400;
+    color: #5990B4;
     -webkit-transition: all .5s ease;
     -moz-transition: all .5s ease;
     -o-transition: all .5s ease;
@@ -210,18 +211,18 @@ a.title:hover{
 
 a.tweet{
     font-family: 'Oxygen', sans-serif;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 20px;
     line-height: 24px;
     float:left;
-    color: #5990B4;
+    color: #233948;
     margin-bottom: 0;
 }
 
 a.tweet:hover{
     opacity: .8;
     text-decoration: none;
-    color: #233948;
+    color: #5990B4;
 }
 
 .post-image{
@@ -239,20 +240,23 @@ a.tweet:hover{
     display: none;
     background-color: #f89335;
     margin-top: 20px;
+    margin-left: 20px;
     border: #f89335 1px solid;
-    -webkit-box-shadow: 0 8px 6px -6px #233948;
-    -moz-box-shadow: 0 8px 6px -6px #233948;
-    box-shadow: 0 8px 6px -6px #233948; 
-    padding-top: 8px !important;
+    border-radius: 50%;
+	width: 60px !important;
+	height: 60px;
     position: fixed;
     top: 0;
-    right: 43%;
+    padding-top: 13px;
+    webkit-box-shadow: 0 8px 7px -8px #233948;
+    -moz-box-shadow: 0 8px 7px -8px #233948;
+    box-shadow: 0 8px 7px -8px #233948;
 }
 
 a.live{
     font-family: 'Oxygen', sans-serif;
-    font-size: 20px;
-    line-height: 23px;
+    font-size: 14px;
+    line-height: 16px;
     font-weight:700;
     color: white;
     -webkit-transition: all .5s ease;
