@@ -17,7 +17,7 @@ html,body{
     display: block;
     position: relative;
     height: 35px;
-    width: 100.1%;
+    width: 100.05%;
     background: #5990B4;
     overflow: hidden;
     -webkit-transform: rotate(180deg);     
@@ -32,14 +32,14 @@ html,body{
     position: absolute;
     top: 0;
     left: 50%;
-    margin-left: -400px;
+    margin-left: -1000px;
     content: '';
     background-image: url('img/brickwall.png');
-    width: 800px;
+    width: 2000px;
     height: 0;
-    border: 400px solid transparent;
+    border: 1000px solid transparent;
     border-top: none;
-    border-bottom: 38px solid #5990B4;
+    border-bottom: 50px solid #5990B4;
     box-sizing: border-box;
 }
 
