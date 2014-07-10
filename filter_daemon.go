@@ -3,6 +3,7 @@ package main
 import (
   "flag"
   "log"
+  "fmt"
   "time"
   "strings"
   "github.com/darkhelmet/twitterstream"
@@ -23,12 +24,9 @@ var (
 func decodeTweets(conn *twitterstream.Connection) {
     for {
         if tweet, err := conn.Next(); err == nil {
-            if(tweet.InReplyToScreenName == nil  &&
-               len(tweet.Text) > 0  &&
-               !strings.Contains(tweet.Text, "@") &&
-               strings.HasSuffix(tweet.Text, "?")) {
-
-                log.Printf(tweet.Text)
+            if(tweet.InReplyToScreenName == nil  && len(tweet.Text) > 0  && !strings.Contains(tweet.Text, "@") && strings.HasSuffix(tweet.Text, "?")) {
+                fmt.Println(tweet.Text)
+                fmt.Println("\t", tweet.User.Name, tweet.CreatedAt)
             }
         } else {
             log.Printf("decoding tweet failed: %s", err)
