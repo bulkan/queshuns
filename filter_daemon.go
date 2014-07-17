@@ -23,8 +23,10 @@ var (
 
     // global to store redis connection
     c redis.Conn
-)
 
+    trimThreshold = 100
+    trimCount     = 0
+)
 
 
 type RedisStoreTweet struct {
@@ -36,6 +38,14 @@ type RedisStoreTweet struct {
   Received_at int64 `json:"received_at,omitempty"`
 }
 
+func trimTweets(){
+    _, err := c.Do("LTRIM", "tweets", 0, 20)
+    if (err != nil) {
+        log.Printf("failed to LTRIM %s", err)
+        return
+    }
+}
+
 func pushToRedis(tweet *twitterstream.Tweet){
     t := RedisStoreTweet{
         Username: tweet.User.Name,
@@ -45,26 +55,28 @@ func pushToRedis(tweet *twitterstream.Tweet){
         Received_at: time.Now().Unix(),
     }
 
+    trimCount += 1
+
+    if trimCount >= trimThreshold {
+        trimCount = 0
+        trimTweets()
+    }
 
     fmt.Println(t.Text)
-    fmt.Println("\t", t.Username, t.Received_at)
-
-
+    fmt.Println("\t", t.Username, t.Received_at, "\n")
 
     jsonned, err := json.Marshal(t)
-    fmt.Println(string(jsonned))
+
     if (err != nil) {
         log.Printf("failed to json.Marshall: %s", err)
         return
     }
-
     _, rerr := c.Do("LPUSH", "tweets", jsonned)
     if (rerr != nil) {
         log.Printf("failed to LPUSH %s", err)
         return
     }
 
-    log.Printf("pushed to redis")
 
 }
 
@@ -74,7 +86,9 @@ func decodeTweets(conn *twitterstream.Connection) {
         if tweet, err := conn.Next(); err == nil {
             if(tweet.InReplyToScreenName == nil  && len(tweet.Text) > 0  && !strings.Contains(tweet.Text, "@") && strings.HasSuffix(tweet.Text, "?")) {
                 pushToRedis(tweet)
+                //time.Sleep(time.Duration(5 * time.Second))
             }
+
         } else {
             log.Printf("decoding tweet failed: %s", err)
             conn.Close()
@@ -89,7 +103,6 @@ func min(a, b int) int {
     }
     return b
 }
-
 
 
 
@@ -136,13 +149,14 @@ func main() {
 
     c.Do("AUTH", "foobared")
 
-    //tweet_strings, err := redis.Strings(c.Do("LRANGE", "tweets", 0, 15))
-    //if (err != nil) {
-        //fmt.Println("Some error occured")
-    //}
+    trimThreshold, err = redis.Int(c.Do("LLEN", "tweets"))
+    if (err != nil) {
+        fmt.Println("Some error occured")
+    }
 
-    //// Unmarshall tweets
-    //fmt.Printf("%s\n", tweet_strings)
+    if trimThreshold >= trimCount {
+        trimTweets()
+    }
 
     streamTweets()
 }
