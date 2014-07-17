@@ -48,7 +48,7 @@ func trimTweets(){
 
 func pushToRedis(tweet *twitterstream.Tweet){
     t := RedisStoreTweet{
-        Username: tweet.User.Name,
+        Username: tweet.User.ScreenName,
         Profile_image_url: tweet.User.ProfileImageUrl,
         Text: tweet.Text,
         Id: tweet.User.Id,
