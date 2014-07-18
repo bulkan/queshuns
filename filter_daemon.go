@@ -34,7 +34,7 @@ type RedisStoreTweet struct {
   Profile_image_url string `json:"profile_image_url,omitempty"`
   Text string `json:"text,omitempty"`
   Userid uint64 `json:"userid,omitempty"`
-  Id int64 `json:"id,omitempty"`
+  Id string `json:"id,omitempty"`
   Received_at int64 `json:"received_at,omitempty"`
 }
 
@@ -51,7 +51,7 @@ func pushToRedis(tweet *twitterstream.Tweet){
         Username: tweet.User.ScreenName,
         Profile_image_url: tweet.User.ProfileImageUrl,
         Text: tweet.Text,
-        Id: tweet.User.Id,
+        Id: tweet.IdString,
         Received_at: time.Now().Unix(),
     }
 
