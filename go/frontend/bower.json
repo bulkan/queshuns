@@ -1,0 +1,19 @@
+{
+  "name": "queshuns",
+  "version": "0.0.0",
+  "homepage": "https://github.com/bulkan/queshuns",
+  "authors": [
+    "Bulkan Evcimen <bulkan@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "socket.io-client": "~1.0.6"
+  }
+}
